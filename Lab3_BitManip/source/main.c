@@ -26,7 +26,7 @@ int main(void) {
 	while (1) {
 
 		mostSigD = PIND & 0x80;
-		tempD = mostSigD << 1;
+		tempD = PIND << 1;
 		tempB = PINB;
 
 		tempWeight = tempWeight + tempD;
