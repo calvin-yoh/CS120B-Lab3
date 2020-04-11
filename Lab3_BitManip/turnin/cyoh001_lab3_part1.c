@@ -27,7 +27,7 @@ int main(void) {
 		tempA = PINA;
 		tempB = PINB;
 
-		while (i <= 0x80)
+		while (i < 0x80)
 		{
 			if ((tempA & i) == i)
 			{
@@ -37,7 +37,7 @@ int main(void) {
 			{
 				tempCount = tempCount + 0x01;
 			}
-			i = i << 1;
+			i = i + i;
 		}
 
 		PORTC = tempCount;
