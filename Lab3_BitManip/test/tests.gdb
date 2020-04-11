@@ -37,14 +37,21 @@ test "PINA: 0x01 , PINB: 0x02 => PORTC: 0x02"
 setPINA 0x01
 setPINB 0x02
 continue 5
-expectPORTC 02
+expectPORTC 0x02
 checkResult
 
-test PINA: 0xF0 , PINB: 0x0F => PORTC: 0x08"
+test "PINA: 0xF0 , PINB: 0x0F => PORTC: 0x08"
 setPINA 0xF0
 setPINB 0x0F
 continue 5
-expectPORTC 8
+expectPORTC 0x08
+checkResult
+
+test "PINA: 0xFF , PINB: 0xFF => PORTC: 0x10"
+setPINA 0xFF
+setPINB 0xFF
+continue 5
+expectPORTC 0x10
 checkResult
 
 # Add tests below
