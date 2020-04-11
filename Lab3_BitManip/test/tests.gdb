@@ -27,8 +27,8 @@ echo ======================================================\n
 echo Running all tests..."\n\n
 
 test "WEIGHT = 70: PIND: 0x23, PINB: 0x00 => PORTB: 0x02"
-setPIND = 0x23
-setPINB = 0x00
+setPIND 0x23
+setPINB 0x00
 continue 5
 expectPORTB 0x02
 checkResult
