@@ -44,7 +44,7 @@ test PINA: 0xF0 , PINB: 0x0F => PORTC: 0x08"
 setPINA 0xF0
 setPINB 0x0F
 continue 5
-expectPORTC 08
+expectPORTC 8
 checkResult
 
 # Add tests below
