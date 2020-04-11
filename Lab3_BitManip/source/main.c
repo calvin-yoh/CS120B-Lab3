@@ -14,64 +14,46 @@
 #endif	
 
 int main(void) {
-	DDRA = 0x00; PORTA = 0xFF;
-	DDRC = 0xFF; PORTC = 0x00;
-	unsigned char tempA = 0x00;
-	unsigned char tempA2 = 0x00;
-	unsigned char tempC = 0x00;
-	unsigned char checkSeatbeltSign = 0x00;
-	unsigned char tempEnd = 0x00;
+	DDRD = 0x00; PORTD = 0xFF;
+	DDRB = 0xFE; PORTB = 0x01;
 
+	unsigned char mostSigD = 0x00;
+	unsigned char tempD = 0x00;
+	unsigned char tempB = 0x00;
+	unsigned short tempWeight = 0x0000;
+	unsigned char answer = 0x00;
 
 	while (1) {
 
-		tempA = PINA & 0x0F;
-		tempA2 = PINA;
+		mostSigD = PIND & 0x80;
+		tempD = mostSigD << 1;
+		tempB = PINB;
 
-		if (tempA == 0x00)
+		tempWeight = tempWeight + tempD;
+		if (mostSigD == 0x80)
 		{
-			tempC = 0x40;
+			tempWeight = tempWeight + 0x0100;
 		}
-		else if (tempA == 0x01 || tempA == 0x02)
+		if (tempB == 0x01)
 		{
-			tempC = 0x60;
-		}
-		else if (tempA == 0x03 || tempA == 0x04)
-		{
-			tempC = 0x70;
-		}
-		else if (tempA == 0x05 || tempA == 0x06)
-		{
-			tempC = 0x38;
-		}
-		else if (tempA == 0x07 || tempA == 0x08 || tempA == 0x09)
-		{
-			tempC = 0x3C;
-		}
-		else if (tempA == 0x0A || tempA == 0x0B || tempA == 0x0C)
-		{
-			tempC = 0x3E;
-		}
-		else
-		{
-			tempC = 0x3F;
+			tempWeight = tempWeight + 1;
 		}
 
-		if ((tempA2 & 0x30) == 0x30)
+		if (tempWeight >= 0x0046)
 		{
-			checkSeatbeltSign = 0x80;
+			answer = 0x02;
 		}
-		else
+		else if (tempWeight > 0x0005)
 		{
-			checkSeatbeltSign = 0x00;
+			answer = 0x04;
 		}
 
-		tempEnd = checkSeatbeltSign | tempC;
-
-		PORTC = tempEnd;
-		tempEnd = 0x00;
-		tempC = 0x00;
-		checkSeatbeltSign = 0x00;
+		PORTB = answer;
+		mostSigD = 0x00;
+		tempD = 0x00;
+		tempB = 0x00;
+		tempWeight = 0x0000;
+		answer = 0x00;
 	}
 	return 0;
 }
