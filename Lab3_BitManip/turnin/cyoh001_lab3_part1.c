@@ -27,7 +27,7 @@ int main(void) {
 		tempA = PINA;
 		tempB = PINB;
 
-		while (i < 0x81)
+		while (i < 0x80)
 		{
 			if ((tempA & i) == i)
 			{
