@@ -39,6 +39,14 @@ int main(void) {
 			}
 			i = i + i;
 		}
+		if ((tempA & i) == i)
+		{
+			tempCount = tempCount + 0x01;
+		}
+		if ((tempB & i) == i)
+		{
+			tempCount = tempCount + 0x01;
+		}
 
 		PORTC = tempCount;
 		tempCount = 0x00;
