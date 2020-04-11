@@ -37,7 +37,7 @@ int main(void) {
 			{
 				tempCount = tempCount + 0x01;
 			}
-			i = i << 1;
+			i = i + i;
 		}
 
 		PORTC = tempCount;
