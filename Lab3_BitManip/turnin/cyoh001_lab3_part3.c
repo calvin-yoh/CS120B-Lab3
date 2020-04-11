@@ -17,6 +17,7 @@ int main(void) {
 	DDRA = 0x00; PORTA = 0xFF;
 	DDRC = 0xFF; PORTC = 0x00;
 	unsigned char tempA = 0x00;
+	unsigned char tempA2 = 0x00;
 	unsigned char tempC = 0x00;
 	unsigned char checkSeatbeltSign = 0x00;
 	unsigned char tempEnd = 0x00;
@@ -24,7 +25,8 @@ int main(void) {
 
 	while (1) {
 
-		tempA = PINA;
+		tempA = PINA & 0x0F;
+		tempA2 = PINA;
 
 		if (tempA == 0x00)
 		{
@@ -55,7 +57,7 @@ int main(void) {
 			tempC = 0x3F;
 		}
 
-		if ((tempA & 0x30) == 0x30)
+		if ((tempA2 & 0x30) == 0x30)
 		{
 			checkSeatbeltSign = 0x80;
 		}
