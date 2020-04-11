@@ -23,24 +23,23 @@ int main(void) {
 	unsigned char i = 0x01;
 
 	while (1) {
+
 		tempA = PINA;
 		tempB = PINB;
 
-		for (i = 0x01; i <= 0x80; i * 0x02)
+		while (i <= 0x80)
 		{
 			if ((tempA & i) == i)
 			{
-				tempCount++;
+				tempCount = tempCount + 0x01;
 			}
-		}
-		for (i = 0x01; i <= 0x80; i * 0x02)
-		{
 			if ((tempB & i) == i)
 			{
-				tempCount++;
+				tempCount = tempCount + 0x01;
 			}
+			i = i << 1;
 		}
-	
+
 		PORTC = tempCount;
 	}
 	return 0;
