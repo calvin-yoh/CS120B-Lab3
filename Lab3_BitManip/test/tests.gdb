@@ -26,33 +26,12 @@
 echo ======================================================\n
 echo Running all tests..."\n\n
 
-test "PINA: 0x00, PINB: 0x00 => PORTC: 0"
-setPINA 0x00
-setPINB 0x0
+test "PINA: 0x11 => PORTC: 0x60"
+setPINA 0x11
 continue 5
-expectPORTC 0
+expectPORTC 0x60
 checkResult
 
-test "PINA: 0x01 , PINB: 0x02 => PORTC: 0x02"
-setPINA 0x01
-setPINB 0x02
-continue 5
-expectPORTC 0x02
-checkResult
-
-test "PINA: 0xF0 , PINB: 0x0F => PORTC: 0x08"
-setPINA 0xF0
-setPINB 0x0F
-continue 5
-expectPORTC 0x08
-checkResult
-
-test "PINA: 0xFF , PINB: 0xFF => PORTC: 0x10"
-setPINA 0xFF
-setPINB 0xFF
-continue 5
-expectPORTC 0x10
-checkResult
 
 # Add tests below
 
